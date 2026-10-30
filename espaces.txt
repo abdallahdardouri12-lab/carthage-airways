@@ -1,16 +1,29 @@
 # ============================================================
 #  Carthage Airways - organisation des fenetres par role
-#  [nom_de_la_fenetre | Titre affiche]
-#  Nom de l'onglet = nom de la fenetre d'origine (voir carthage.glade)
-#  Les fenetres non citees ici restent des fenetres separees
-#  (connexion, fenetres de confirmation, formulaires...).
+#  [nom_de_la_fenetre | Titre - Sous-titre]
+#  Nom de l'onglet = fenetre d'origine (voir integration.py)
+#    @tableau = tableau de bord automatique
+#    @vide    = page "Module en cours d'integration"
+#  Une meme fenetre peut servir dans deux espaces.
+#  Plusieurs fenetres dans un onglet : Titre: fenetre + Titre: fenetre
+#  Les fenetres non citees restent separees (connexion,
+#  formulaires, confirmations...).
+#  !garder = ces fenetres restent AUSSI des fenetres separees
 # ============================================================
 
+!garder win_pers_espace
+
 [window_admin | Carthage Airways - Espace administrateur]
+Tableau de bord = @tableau
 Vols = windowGestionVols
 Passagers = WWwindowPassagers
+Réservations = window_passager
+Personnel navigant = Gestion du personnel: win_admin_personnel + Espace personnel navigant: win_pers_espace
 Avions = av_win1
-Personnel navigant = win_admin_personnel
+Aéroports = @vide
 
 [window_espace_passager | Carthage Airways - Espace passager]
 Mes réservations = window_passager
+Recherche de vols = @vide
+Mon profil et fidélité = @vide
+Aéroports = @vide
