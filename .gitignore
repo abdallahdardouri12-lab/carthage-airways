@@ -1,0 +1,6 @@
+*.o
+src/carthage
+Makefile
+Makefile.in
+config.*
+autom4te.cache/
