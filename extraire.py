@@ -11,6 +11,8 @@ if len(sys.argv) < 4:
     sys.exit(__doc__ if __doc__ else "Usage : python3 extraire.py SOURCE DESTINATION fenetre1 ...")
 src, dst, noms = sys.argv[1], sys.argv[2], sys.argv[3:]
 r = ET.parse(os.path.expanduser(src)).getroot()
+if r.tag != "glade-interface":
+    sys.exit("ERREUR : %s a ete cree avec Glade 3 (format GtkBuilder), il n'est pas compatible avec Glade 2" % src)
 dest = ET.Element("glade-interface")
 for n in noms:
     fen = r.find("widget[@id='%s']" % n)

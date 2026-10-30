@@ -1,9 +1,7 @@
 <?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
-<glade-interface>
-
-<widget class="GtkWindow" id="WWwindowPassagers">
+<glade-interface><widget class="GtkWindow" id="WWwindowPassagers">
   <property name="visible">True</property>
   <property name="title" translatable="yes">Gestion des passagers</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -20,7 +18,7 @@
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
-  <signal name="destroy" handler="on_WWwindowPassagers_destroy" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+  <signal handler="on_WWwindowPassagers_destroy" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="destroy" />
 
   <child>
     <widget class="GtkNotebook" id="WWnotebookPassagers">
@@ -66,7 +64,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -89,7 +87,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -99,7 +97,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -109,7 +107,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -132,7 +130,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -142,7 +140,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -152,7 +150,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -175,7 +173,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -185,7 +183,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -195,7 +193,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -218,7 +216,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -287,7 +285,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -310,7 +308,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -362,7 +360,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -385,13 +383,19 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
             <widget class="GtkComboBox" id="WWcomboVille">
               <property name="visible">True</property>
-              <property name="items" translatable="yes">Tunis&#10;Sfax&#10;Sousse&#10;Bizerte&#10;Nabeul&#10;Gabès&#10;Autre</property>
+              <property name="items" translatable="yes">Tunis
+Sfax
+Sousse
+Bizerte
+Nabeul
+Gabès
+Autre</property>
               <property name="add_tearoffs">False</property>
               <property name="focus_on_click">True</property>
             </widget>
@@ -401,7 +405,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -424,7 +428,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -434,7 +438,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -444,7 +448,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -467,7 +471,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -477,7 +481,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -487,7 +491,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -510,7 +514,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -561,7 +565,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
         </widget>
@@ -583,7 +587,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -601,7 +605,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
             <packing>
               <property name="padding">0</property>
@@ -632,7 +636,11 @@
           <child>
             <widget class="GtkComboBox" id="WWcomboNiveau">
               <property name="visible">True</property>
-              <property name="items" translatable="yes">Tous&#10;Standard&#10;Silver&#10;Gold&#10;Platinum</property>
+              <property name="items" translatable="yes">Tous
+Standard
+Silver
+Gold
+Platinum</property>
               <property name="add_tearoffs">False</property>
               <property name="focus_on_click">True</property>
             </widget>
@@ -687,7 +695,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonTrier_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonTrier_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
             <packing>
               <property name="padding">0</property>
@@ -721,7 +729,7 @@
               <property name="fixed_height_mode">False</property>
               <property name="hover_selection">False</property>
               <property name="hover_expand">False</property>
-              <signal name="row_activated" handler="on_WWtreeviewPassagers_row_activated" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWtreeviewPassagers_row_activated" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="row_activated" />
             </widget>
           </child>
         </widget>
@@ -744,7 +752,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonAjouter_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonAjouter_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
           <child>
@@ -755,7 +763,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonModifier_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonModifier_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
           <child>
@@ -766,7 +774,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonSupprimer_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonSupprimer_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
           <child>
@@ -777,7 +785,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonQuitter_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonQuitter_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
         </widget>
@@ -975,7 +983,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -998,7 +1006,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1008,7 +1016,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -1018,7 +1026,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1041,13 +1049,19 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
             <widget class="GtkComboBox" id="WWcomboVilleEsp">
               <property name="visible">True</property>
-              <property name="items" translatable="yes">Tunis&#10;Sfax&#10;Sousse&#10;Bizerte&#10;Nabeul&#10;Gabès&#10;Autre</property>
+              <property name="items" translatable="yes">Tunis
+Sfax
+Sousse
+Bizerte
+Nabeul
+Gabès
+Autre</property>
               <property name="add_tearoffs">False</property>
               <property name="focus_on_click">True</property>
             </widget>
@@ -1057,7 +1071,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1080,7 +1094,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1090,7 +1104,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -1100,7 +1114,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1123,7 +1137,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1133,7 +1147,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -1143,7 +1157,7 @@
               <property name="top_attach">2</property>
               <property name="bottom_attach">3</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1166,7 +1180,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1176,7 +1190,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -1186,7 +1200,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1209,7 +1223,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1219,7 +1233,7 @@
               <property name="editable">True</property>
               <property name="visibility">True</property>
               <property name="max_length">0</property>
-              <property name="text" translatable="yes"></property>
+              <property name="text" translatable="yes" />
               <property name="has_frame">True</property>
               <property name="activates_default">False</property>
             </widget>
@@ -1229,7 +1243,7 @@
               <property name="top_attach">3</property>
               <property name="bottom_attach">4</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1252,7 +1266,7 @@
               <property name="top_attach">4</property>
               <property name="bottom_attach">5</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1304,7 +1318,7 @@
               <property name="top_attach">4</property>
               <property name="bottom_attach">5</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1327,7 +1341,7 @@
               <property name="top_attach">4</property>
               <property name="bottom_attach">5</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1378,7 +1392,7 @@
               <property name="top_attach">4</property>
               <property name="bottom_attach">5</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
         </widget>
@@ -1401,7 +1415,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonMettreAJour_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonMettreAJour_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
         </widget>
@@ -1459,7 +1473,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1482,7 +1496,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1505,7 +1519,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1528,7 +1542,7 @@
               <property name="top_attach">0</property>
               <property name="bottom_attach">1</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1551,7 +1565,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
           <child>
@@ -1574,7 +1588,7 @@
               <property name="top_attach">1</property>
               <property name="bottom_attach">2</property>
               <property name="x_options">expand|fill</property>
-              <property name="y_options"></property>
+              <property name="y_options" />
             </packing>
           </child>
         </widget>
@@ -1645,7 +1659,7 @@
               <property name="use_underline">True</property>
               <property name="relief">GTK_RELIEF_NORMAL</property>
               <property name="focus_on_click">True</property>
-              <signal name="clicked" handler="on_WWboutonRetour_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT"/>
+              <signal handler="on_WWboutonRetour_clicked" last_modification_time="Thu, 22 Oct 2026 20:00:00 GMT" name="clicked" />
             </widget>
           </child>
         </widget>

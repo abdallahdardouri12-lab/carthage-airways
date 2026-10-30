@@ -13,8 +13,10 @@ if not sources:
     sys.exit("ERREUR : aucun fichier dans modules/ ni commun.glade")
 
 resultat = ET.Element("glade-interface")
-deja_vus = {}          # id -> fichier
+fenetres_vues = {}     # nom de fenetre -> fichier
+noms_globaux = {}      # nom de widget -> (fichier, fenetre)
 erreurs = []
+avertissements = []
 
 for f in sources:
     nom = os.path.relpath(f, racine)
@@ -23,17 +25,31 @@ for f in sources:
     except ET.ParseError as e:
         erreurs.append("%s est abime : %s" % (nom, e))
         continue
+    if r.tag != "glade-interface":
+        erreurs.append("%s n'est pas au format Glade 2 (cree avec Glade 3 ?)" % nom)
+        continue
     fenetres = r.findall("widget")
     for fen in fenetres:
+        fid = fen.get("id")
+        if fid in fenetres_vues:
+            erreurs.append("la fenetre '%s' existe dans %s ET dans %s" % (fid, fenetres_vues[fid], nom))
+            continue
+        fenetres_vues[fid] = nom
+        dans_fenetre = set()
         for w in fen.iter("widget"):
             i = w.get("id")
-            if i in deja_vus:
-                erreurs.append("le nom '%s' existe dans %s ET dans %s" % (i, deja_vus[i], nom))
-            else:
-                deja_vus[i] = nom
+            if i in dans_fenetre:
+                erreurs.append("le nom '%s' est utilise 2 fois dans la fenetre '%s' (%s)" % (i, fid, nom))
+            dans_fenetre.add(i)
+            if i in noms_globaux and noms_globaux[i][1] != fid:
+                avertissements.append("'%s' existe dans '%s' et dans '%s' (accepte)" % (i, noms_globaux[i][1], fid))
+            noms_globaux.setdefault(i, (nom, fid))
         resultat.append(fen)
     print("  %-28s %d fenetre(s) : %s" % (nom, len(fenetres),
           ", ".join(w.get("id") for w in fenetres)))
+
+if avertissements:
+    print("\nRemarque : %d nom(s) de widget repete(s) dans des fenetres differentes (sans danger)." % len(avertissements))
 
 if erreurs:
     print("\nINTEGRATION ANNULEE, a corriger d'abord :")
@@ -48,4 +64,4 @@ with open(sortie, "w", encoding="utf-8") as out:
     out.write(ET.tostring(resultat, encoding="unicode"))
     out.write("\n")
 ET.parse(sortie)
-print("\nOK : carthage.glade reconstruit (%d widgets). Ouvre-le dans Glade puis clique sur Generer." % len(deja_vus))
+print("\nOK : carthage.glade reconstruit (%d fenetres). Ouvre-le dans Glade puis clique sur Generer." % len(fenetres_vues))

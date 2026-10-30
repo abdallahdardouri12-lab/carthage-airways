@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
-<glade-interface>
-  <widget class="GtkWindow" id="windowGestionVols">
+<glade-interface><widget class="GtkWindow" id="windowGestionVols">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Carthage Airways - Gestion des vols</property>
     <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -47,7 +46,7 @@
                 <property name="visible">True</property>
                 <property name="width_request">700</property>
                 <property name="height_request">32</property>
-                <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;Gestion des vols&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span size="x-large" weight="bold" foreground="#0F766E"&gt;Gestion des vols&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -64,7 +63,7 @@
                 <property name="visible">True</property>
                 <property name="width_request">700</property>
                 <property name="height_request">20</property>
-                <property name="label" translatable="yes">&lt;span foreground=&quot;#C2410C&quot;&gt;Administration  •  Carthage Airways&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span foreground="#C2410C"&gt;Administration  •  Carthage Airways&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -95,7 +94,7 @@
                 <property name="can_focus">True</property>
                 <property name="relief">GTK_RELIEF_NORMAL</property>
                 <property name="focus_on_click">True</property>
-                <signal name="clicked" handler="on_buttonVFermer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                <signal handler="on_buttonVFermer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                 <child>
                   <widget class="GtkAlignment" id="alignmentBtnVFermer">
                     <property name="visible">True</property>
@@ -194,7 +193,7 @@
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVRechercher">
                             <property name="visible">True</property>
@@ -265,7 +264,7 @@
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVToutAfficher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVToutAfficher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVToutAfficher">
                             <property name="visible">True</property>
@@ -456,7 +455,7 @@ Istanbul (IST)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVFiltrer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVFiltrer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVFiltrer">
                             <property name="visible">True</property>
@@ -524,7 +523,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVRecherche">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; RECHERCHE ET FILTRES &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; RECHERCHE ET FILTRES &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -569,7 +568,7 @@ Istanbul (IST)</property>
                             <property name="fixed_height_mode">False</property>
                             <property name="hover_selection">False</property>
                             <property name="hover_expand">False</property>
-                            <signal name="row_activated" handler="on_treeviewVVols_row_activated" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                            <signal handler="on_treeviewVVols_row_activated" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="row_activated" />
                           </widget>
                         </child>
                       </widget>
@@ -583,7 +582,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVListe">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; VOLS PROGRAMMÉS &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; VOLS PROGRAMMÉS &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -612,7 +611,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;NUMÉRO DE VOL *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;NUMÉRO DE VOL *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -646,7 +645,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;PASSAGERS PRÉVUS *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;PASSAGERS PRÉVUS *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -682,7 +681,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;VILLE DE DÉPART *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;VILLE DE DÉPART *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -722,7 +721,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;DESTINATION *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;DESTINATION *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -762,7 +761,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;HEURE DE DÉPART *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;HEURE DE DÉPART *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -851,7 +850,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;HEURE D'ARRIVÉE *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;HEURE D'ARRIVÉE *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -940,7 +939,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;DATE DU VOL *&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;DATE DU VOL *&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1014,7 +1013,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;DURÉE (AUTOMATIQUE)&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;DURÉE (AUTOMATIQUE)&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1031,7 +1030,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">210</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#C2410C&quot;&gt;-- h --&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#C2410C"&gt;-- h --&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1051,7 +1050,7 @@ Istanbul (IST)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVAjouter_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVAjouter_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVAjouter">
                             <property name="visible">True</property>
@@ -1122,7 +1121,7 @@ Istanbul (IST)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVModifier_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVModifier_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVModifier">
                             <property name="visible">True</property>
@@ -1193,7 +1192,7 @@ Istanbul (IST)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVSupprimer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVSupprimer_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVSupprimer">
                             <property name="visible">True</property>
@@ -1261,7 +1260,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">430</property>
                         <property name="height_request">20</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;* obligatoire  •  numéro de vol unique&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;* obligatoire  •  numéro de vol unique&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1278,7 +1277,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVFiche">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; FICHE DU VOL &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; FICHE DU VOL &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -1307,7 +1306,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;AVION DISPONIBLE&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;AVION DISPONIBLE&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1340,7 +1339,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;CAPACITÉ DE L'AVION&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;CAPACITÉ DE L'AVION&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1357,7 +1356,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;-- places&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#0F766E"&gt;-- places&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1374,7 +1373,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;PASSAGERS PRÉVUS&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;PASSAGERS PRÉVUS&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1391,7 +1390,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;--&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#0F766E"&gt;--&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1408,7 +1407,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">40</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Vérification de capacité : en attente&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Vérification de capacité : en attente&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1428,7 +1427,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVAffecter_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVAffecter_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVAffecter">
                             <property name="visible">True</property>
@@ -1496,7 +1495,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVAffectation">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; AFFECTATION D'UN AVION &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; AFFECTATION D'UN AVION &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -1542,7 +1541,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">185</property>
                         <property name="height_request">40</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Ville de départ différente de la destination&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Ville de départ différente de la destination&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1576,7 +1575,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">185</property>
                         <property name="height_request">40</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Heure d'arrivée postérieure à l'heure de départ&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Heure d'arrivée postérieure à l'heure de départ&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1610,7 +1609,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">185</property>
                         <property name="height_request">40</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Aéroports de départ et d'arrivée ouverts&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Aéroports de départ et d'arrivée ouverts&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1644,7 +1643,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="visible">True</property>
                         <property name="width_request">185</property>
                         <property name="height_request">40</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Durée calculée à partir des horaires&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Durée calculée à partir des horaires&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1664,7 +1663,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVAnnulerVol_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVAnnulerVol_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVAnnulerVol">
                             <property name="visible">True</property>
@@ -1732,7 +1731,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVCoherence">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; CONTRÔLES DE COHÉRENCE &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; CONTRÔLES DE COHÉRENCE &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -1789,7 +1788,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">160</property>
                 <property name="height_request">32</property>
-                <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;Annuler le vol&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span size="x-large" weight="bold" foreground="#0F766E"&gt;Annuler le vol&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1806,7 +1805,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">160</property>
                 <property name="height_request">20</property>
-                <property name="label" translatable="yes">&lt;span foreground=&quot;#C2410C&quot;&gt;Annulation en cascade&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span foreground="#C2410C"&gt;Annulation en cascade&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1834,7 +1833,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">420</property>
                 <property name="height_request">24</property>
-                <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot; foreground=&quot;#C2410C&quot;&gt;Vol : --&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span weight="bold" foreground="#C2410C"&gt;Vol : --&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1967,7 +1966,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="can_focus">True</property>
                 <property name="relief">GTK_RELIEF_NORMAL</property>
                 <property name="focus_on_click">True</property>
-                <signal name="clicked" handler="on_buttonVConfirmerAnnulation_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                <signal handler="on_buttonVConfirmerAnnulation_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                 <child>
                   <widget class="GtkAlignment" id="alignmentBtnVConfirmerAnnulation">
                     <property name="visible">True</property>
@@ -2038,7 +2037,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="can_focus">True</property>
                 <property name="relief">GTK_RELIEF_NORMAL</property>
                 <property name="focus_on_click">True</property>
-                <signal name="clicked" handler="on_buttonVRetourAnnulation_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                <signal handler="on_buttonVRetourAnnulation_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                 <child>
                   <widget class="GtkAlignment" id="alignmentBtnVRetourAnnulation">
                     <property name="visible">True</property>
@@ -2145,7 +2144,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">600</property>
                 <property name="height_request">32</property>
-                <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;Trouver un vol&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span size="x-large" weight="bold" foreground="#0F766E"&gt;Trouver un vol&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2162,7 +2161,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">600</property>
                 <property name="height_request">20</property>
-                <property name="label" translatable="yes">&lt;span foreground=&quot;#C2410C&quot;&gt;Espace passager  •  Carthage Airways&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span foreground="#C2410C"&gt;Espace passager  •  Carthage Airways&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2190,7 +2189,7 @@ TS-IMC - ATR 72-600 (70 places)</property>
                 <property name="visible">True</property>
                 <property name="width_request">280</property>
                 <property name="height_request">24</property>
-                <property name="label" translatable="yes">&lt;span foreground=&quot;#57534E&quot;&gt;Passager : --&lt;/span&gt;</property>
+                <property name="label" translatable="yes">&lt;span foreground="#57534E"&gt;Passager : --&lt;/span&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">False</property>
                 <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2378,7 +2377,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">240</property>
                         <property name="height_request">34</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; foreground=&quot;#57534E&quot;&gt;Cochez un ou plusieurs critères puis lancez la recherche.&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" foreground="#57534E"&gt;Cochez un ou plusieurs critères puis lancez la recherche.&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">True</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2398,7 +2397,7 @@ Istanbul (IST)</property>
                         <property name="can_focus">True</property>
                         <property name="relief">GTK_RELIEF_NORMAL</property>
                         <property name="focus_on_click">True</property>
-                        <signal name="clicked" handler="on_buttonVPassRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                        <signal handler="on_buttonVPassRechercher_clicked" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="clicked" />
                         <child>
                           <widget class="GtkAlignment" id="alignmentBtnVPassRechercher">
                             <property name="visible">True</property>
@@ -2466,7 +2465,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVCriteres">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; RECHERCHER PAR &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; RECHERCHER PAR &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -2511,7 +2510,7 @@ Istanbul (IST)</property>
                             <property name="fixed_height_mode">False</property>
                             <property name="hover_selection">False</property>
                             <property name="hover_expand">False</property>
-                            <signal name="cursor_changed" handler="on_treeviewVPassVols_cursor_changed" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT"/>
+                            <signal handler="on_treeviewVPassVols_cursor_changed" last_modification_time="Thu, 22 Oct 2026 12:00:00 GMT" name="cursor_changed" />
                           </widget>
                         </child>
                       </widget>
@@ -2525,7 +2524,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVResultats">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; VOLS TROUVÉS &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; VOLS TROUVÉS &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
@@ -2554,7 +2553,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">300</property>
                         <property name="height_request">28</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;Vol --&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#0F766E"&gt;Vol --&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2571,7 +2570,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">230</property>
                         <property name="height_request">28</property>
-                        <property name="label" translatable="yes">&lt;span foreground=&quot;#57534E&quot;&gt;--/--/----&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span foreground="#57534E"&gt;--/--/----&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2588,7 +2587,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;DÉPART&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;DÉPART&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2605,7 +2604,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;ARRIVÉE&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;ARRIVÉE&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2622,7 +2621,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;--&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="x-large" weight="bold" foreground="#0F766E"&gt;--&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2639,7 +2638,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;x-large&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt;--&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="x-large" weight="bold" foreground="#0F766E"&gt;--&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2656,7 +2655,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#C2410C&quot;&gt;--:--&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#C2410C"&gt;--:--&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2673,7 +2672,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">200</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#C2410C&quot;&gt;--:--&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#C2410C"&gt;--:--&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2690,7 +2689,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">150</property>
                         <property name="height_request">24</property>
-                        <property name="label" translatable="yes">&lt;span foreground=&quot;#57534E&quot;&gt;———  ✈  ———&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span foreground="#57534E"&gt;———  ✈  ———&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -2718,7 +2717,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">400</property>
                         <property name="height_request">18</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#57534E&quot;&gt;DURÉE DU VOL (CALCULÉE AUTOMATIQUEMENT)&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#57534E"&gt;DURÉE DU VOL (CALCULÉE AUTOMATIQUEMENT)&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2735,7 +2734,7 @@ Istanbul (IST)</property>
                         <property name="visible">True</property>
                         <property name="width_request">300</property>
                         <property name="height_request">30</property>
-                        <property name="label" translatable="yes">&lt;span size=&quot;large&quot; weight=&quot;bold&quot; foreground=&quot;#C2410C&quot;&gt;-- h -- min&lt;/span&gt;</property>
+                        <property name="label" translatable="yes">&lt;span size="large" weight="bold" foreground="#C2410C"&gt;-- h -- min&lt;/span&gt;</property>
                         <property name="use_markup">True</property>
                         <property name="wrap">False</property>
                         <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2752,7 +2751,7 @@ Istanbul (IST)</property>
                 <child>
                   <widget class="GtkLabel" id="labelFrameVDetail">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;span size=&quot;small&quot; weight=&quot;bold&quot; foreground=&quot;#0F766E&quot;&gt; DÉTAIL DU VOL SÉLECTIONNÉ &lt;/span&gt;</property>
+                    <property name="label" translatable="yes">&lt;span size="small" weight="bold" foreground="#0F766E"&gt; DÉTAIL DU VOL SÉLECTIONNÉ &lt;/span&gt;</property>
                     <property name="use_markup">True</property>
                   </widget>
                   <packing>
