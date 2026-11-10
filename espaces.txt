@@ -17,7 +17,7 @@
 Tableau de bord = @tableau
 Vols = windowGestionVols
 Passagers = WWwindowPassagers
-Réservations = window_passager
+Réservations = window_gestion_reservations
 Personnel navigant = Gestion du personnel: win_admin_personnel + Espace personnel navigant: win_pers_espace
 Avions = av_win1
 Aéroports = @vide
