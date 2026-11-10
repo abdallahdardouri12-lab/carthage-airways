@@ -4,7 +4,7 @@
 # Configuration : espaces.txt     A lancer APRES integration.py :
 #     python3 integration.py
 #     python3 assembler.py
-import os, sys, re, copy
+import os, sys, re, copy, unicodedata
 import xml.etree.ElementTree as ET
 
 racine = os.path.dirname(os.path.abspath(__file__))
@@ -103,7 +103,8 @@ def page_tableau(wid, onglets):
     modules = [o for o, f in onglets if not f.startswith("@tableau")]
     cartes = []
     for k, m in enumerate(modules):
-        cle = re.sub(r"\W+", "_", m.lower()).strip("_")
+        cle = unicodedata.normalize("NFKD", m).encode("ascii", "ignore").decode().lower()
+        cle = re.sub(r"[^a-z0-9]+", "_", cle).strip("_")
         carte = boite(True, nid(wid + "_carte"), [
             (label(nid(wid + "_cn"), '<b><span foreground="%s">%s</span></b>' % (BLEU, m), True), "False", "False"),
             (label("%s_stat_%s" % (wid, cle), '<span size="xx-large" weight="bold">0</span>', True), "False", "False"),
@@ -184,7 +185,7 @@ for pos, esp in enumerate(espaces):
     principal_txt, _, sous = titre.partition(" - ")
     win = widget("GtkWindow", wid, [("title", titre), ("type", "GTK_WINDOW_TOPLEVEL"),
         ("window_position", "GTK_WIN_POS_CENTER"), ("modal", "False"),
-        ("default_width", "1150"), ("default_height", "720"), ("resizable", "True"),
+        ("default_width", "950"), ("default_height", "620"), ("resizable", "True"),
         ("destroy_with_parent", "False"), ("decorated", "True"),
         ("skip_taskbar_hint", "False"), ("skip_pager_hint", "False"),
         ("type_hint", "GDK_WINDOW_TYPE_HINT_NORMAL"), ("gravity", "GDK_GRAVITY_NORTH_WEST"),
@@ -236,7 +237,14 @@ for pos, esp in enumerate(espaces):
                     enfant(contenu, c, [("tab_expand", "False"), ("tab_fill", "True")])
                     enfant(contenu, label("%s_sousnb%d_t%d" % (wid, n, k), "  %s  " % titre_sous, False, "0.5"),
                            [("type", "tab")])
-        enfant(nb, contenu, [("tab_expand", "False"), ("tab_fill", "True")])
+        # chaque onglet dans une zone defilante : la fenetre peut etre petite
+        sw = widget("GtkScrolledWindow", "%s_sw%d" % (wid, n), [("can_focus", "True"),
+            ("hscrollbar_policy", "GTK_POLICY_AUTOMATIC"), ("vscrollbar_policy", "GTK_POLICY_AUTOMATIC"),
+            ("shadow_type", "GTK_SHADOW_NONE"), ("window_placement", "GTK_CORNER_TOP_LEFT")])
+        vp = widget("GtkViewport", "%s_vp%d" % (wid, n), [("shadow_type", "GTK_SHADOW_NONE")])
+        enfant(vp, contenu)
+        enfant(sw, vp)
+        enfant(nb, sw, [("tab_expand", "False"), ("tab_fill", "True")])
         tab = boite(False, "%s_onglet%d" % (wid, n), [
             (image("%s_onglet%d_img" % (wid, n), icone_pour(onglet)), "False", "False"),
             (label("%s_onglet%d_lbl" % (wid, n), onglet), "False", "False")], "6", "3")

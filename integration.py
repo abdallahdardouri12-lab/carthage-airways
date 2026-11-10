@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Carthage Airways - reunit commun.glade + modules/*.glade dans carthage.glade
 # Usage (depuis le dossier du depot) : python3 integration.py
-import os, glob, sys
+import os, glob, sys, re, unicodedata
 import xml.etree.ElementTree as ET
 
 racine = os.path.dirname(os.path.abspath(__file__))
@@ -29,6 +29,16 @@ for f in sources:
         erreurs.append("%s n'est pas au format Glade 2 (cree avec Glade 3 ?)" % nom)
         continue
     fenetres = r.findall("widget")
+    # noms invalides en C (accents, espaces, apostrophes...) -> corriges
+    for w in r.iter("widget"):
+        ancien = w.get("id") or ""
+        nouveau = unicodedata.normalize("NFKD", ancien).encode("ascii", "ignore").decode()
+        nouveau = re.sub(r"[^A-Za-z0-9_]", "_", nouveau)
+        if nouveau == "" or nouveau[0].isdigit():
+            nouveau = "w_" + nouveau
+        if nouveau != ancien:
+            w.set("id", nouveau)
+            print("  nom corrige dans %s : %r -> %r" % (nom, ancien, nouveau))
     for fen in fenetres:
         fid = fen.get("id")
         if fid in fenetres_vues:
