@@ -4,74 +4,197 @@
 
 int main(void)
 {
-    Personnel p1, p2, p3, modif, trouve;
-    AffectationPersonnel a1, a2;
-    DatePersonnel aujourdhui = {10, 11, 2026};
+    char fichier[] = "personnel.txt";
+    char fichier_aff[] = "affectations.txt";
+    Personnel p, trouve;
+    AffectationPersonnel a;
+    DatePersonnel aujourdhui;
+    char id[20], fonction[20], base[40];
+    int choix, dispo, code, n, statut;
+    int total, pil, copil, cab, nb_dispo;
     float temps, restant;
-    int total, pil, copil, cab, dispo;
 
-    strcpy(p1.entry_id, "P001");          strcpy(p1.entry_login, "ahmed.bs");
-    strcpy(p1.entry_pers_nom, "Ben Salah"); strcpy(p1.entry_pers_prenom, "Ahmed");
-    strcpy(p1.entry_pers_cin, "09876543");
-    p1.date_naissance.spin_pers_jour = 12; p1.date_naissance.spin_pers_mois = 4; p1.date_naissance.spin_pers_annee = 1985;
-    strcpy(p1.combo_fonction, "Pilote");  strcpy(p1.label_pers_grade, "Commandant de bord");
-    strcpy(p1.combo_base, "Tunis-Carthage (TUN)");
-    p1.date_embauche.spin_pers_jour = 1; p1.date_embauche.spin_pers_mois = 9; p1.date_embauche.spin_pers_annee = 2012;
-    strcpy(p1.entry_pers_telephone, "22111222"); strcpy(p1.entry_pers_mail, "ahmed@carthage.tn");
-    p1.check_disponible = 1; p1.heures_vol = 8500;
+    printf("Date du jour (jj mm aaaa) : ");
+    scanf("%d %d %d", &aujourdhui.spin_pers_jour, &aujourdhui.spin_pers_mois, &aujourdhui.spin_pers_annee);
 
-    p2 = p1;
-    strcpy(p2.entry_id, "P002");          strcpy(p2.entry_login, "sana.t");
-    strcpy(p2.entry_pers_nom, "Trabelsi"); strcpy(p2.entry_pers_prenom, "Sana");
-    strcpy(p2.entry_pers_cin, "11223344"); strcpy(p2.combo_fonction, "Hotesse");
-    strcpy(p2.label_pers_grade, "Chef de cabine"); strcpy(p2.combo_base, "Monastir (MIR)");
-    strcpy(p2.entry_pers_telephone, "55443322"); strcpy(p2.entry_pers_mail, "sana@carthage.tn");
-    p2.heures_vol = 3200;
+    do
+    {
+        printf("\n===== GESTION DU PERSONNEL NAVIGANT =====\n");
+        printf("1. Ajouter un membre\n");
+        printf("2. Modifier un membre\n");
+        printf("3. Supprimer un membre\n");
+        printf("4. Rechercher un membre\n");
+        printf("5. Filtrer les membres\n");
+        printf("6. Affecter un membre a un vol\n");
+        printf("7. Changer le statut d'une affectation\n");
+        printf("8. Planning et temps de vol d'un membre\n");
+        printf("9. Statistiques\n");
+        printf("0. Quitter\n");
+        printf("Votre choix : ");
+        if (scanf("%d", &choix) != 1) break;
 
-    p3 = p1;
-    strcpy(p3.entry_id, "P003");          strcpy(p3.entry_login, "karim.m");
-    strcpy(p3.entry_pers_nom, "Mansour"); strcpy(p3.entry_pers_prenom, "Karim");
-    strcpy(p3.entry_pers_cin, "55667788"); strcpy(p3.combo_fonction, "Copilote");
-    strcpy(p3.label_pers_grade, "Officier pilote de ligne");
-    strcpy(p3.entry_pers_telephone, "98765432"); strcpy(p3.entry_pers_mail, "karim@carthage.tn");
-    p3.check_disponible = 0; p3.heures_vol = 1500;
+        switch (choix)
+        {
+        case 1:
+        case 2:
+            if (choix == 2)
+            {
+                printf("ID du membre a modifier : ");
+                scanf(" %19s", id);
+                if (!chercher_personnel(fichier, id, &trouve))
+                {
+                    printf("Membre introuvable.\n");
+                    break;
+                }
+                strcpy(p.entry_id, id);
+            }
+            else
+            {
+                printf("ID : ");
+                scanf(" %19s", p.entry_id);
+            }
+            printf("Login : ");
+            scanf(" %29s", p.entry_login);
+            printf("Nom : ");
+            scanf(" %29[^\n]", p.entry_pers_nom);
+            printf("Prenom : ");
+            scanf(" %29[^\n]", p.entry_pers_prenom);
+            printf("CIN (8 chiffres) : ");
+            scanf(" %8s", p.entry_pers_cin);
+            printf("Date de naissance (jj mm aaaa) : ");
+            scanf("%d %d %d", &p.date_naissance.spin_pers_jour, &p.date_naissance.spin_pers_mois, &p.date_naissance.spin_pers_annee);
+            printf("Fonction (Pilote, Copilote, Hotesse, Steward) : ");
+            scanf(" %19s", p.combo_fonction);
+            printf("Grade : ");
+            scanf(" %39[^\n]", p.label_pers_grade);
+            printf("Base d'attache : ");
+            scanf(" %39[^\n]", p.combo_base);
+            printf("Date d'embauche (jj mm aaaa) : ");
+            scanf("%d %d %d", &p.date_embauche.spin_pers_jour, &p.date_embauche.spin_pers_mois, &p.date_embauche.spin_pers_annee);
+            printf("Telephone (8 chiffres) : ");
+            scanf(" %8s", p.entry_pers_telephone);
+            printf("Email : ");
+            scanf(" %49s", p.entry_pers_mail);
+            printf("Disponible (1 = oui, 0 = non) : ");
+            scanf("%d", &p.check_disponible);
+            printf("Heures de vol : ");
+            scanf("%f", &p.heures_vol);
 
-    remove("personnel.txt");
-    remove("affectations.txt");
+            code = controle_saisie_personnel(fichier, p);
+            if (choix == 2 && (code == 6 || code == 7))
+                code = 0;
+            switch (code)
+            {
+            case 1: printf("Erreur : un champ obligatoire est vide.\n"); break;
+            case 2: printf("Erreur : le telephone doit contenir 8 chiffres.\n"); break;
+            case 3: printf("Erreur : email invalide.\n"); break;
+            case 4: printf("Erreur : le CIN doit contenir 8 chiffres.\n"); break;
+            case 5: printf("Erreur : date invalide.\n"); break;
+            case 6: printf("Erreur : cet ID existe deja.\n"); break;
+            case 7: printf("Erreur : ce login existe deja.\n"); break;
+            }
+            if (code != 0) break;
 
-    printf("Controle de saisie P001 : %d (0 = correct)\n", controle_saisie_personnel("personnel.txt", p1));
-    printf("Ajout P001 : %d\n", ajouter_personnel("personnel.txt", p1));
-    printf("Ajout P002 : %d\n", ajouter_personnel("personnel.txt", p2));
-    printf("Ajout P003 : %d\n", ajouter_personnel("personnel.txt", p3));
-    printf("Ajout P001 une 2e fois (doublon refuse) : %d\n", ajouter_personnel("personnel.txt", p1));
+            if (choix == 1)
+            {
+                if (ajouter_personnel(fichier, p)) printf("Membre ajoute.\n");
+                else printf("Ajout impossible.\n");
+            }
+            else
+            {
+                if (modifier_personnel(fichier, id, p)) printf("Membre modifie.\n");
+                else printf("Modification impossible (login deja utilise ?).\n");
+            }
+            break;
 
-    modif = p2;
-    strcpy(modif.entry_pers_telephone, "20202020");
-    printf("Modification P002 : %d\n", modifier_personnel("personnel.txt", "P002", modif));
+        case 3:
+            printf("ID du membre a supprimer : ");
+            scanf(" %19s", id);
+            if (supprimer_personnel(fichier, id)) printf("Membre supprime.\n");
+            else printf("Membre introuvable.\n");
+            break;
 
-    printf("Recherche P003 : %d\n", chercher_personnel("personnel.txt", "P003", &trouve));
-    printf("Filtre Pilote + disponibles : %d membre(s) -> recherche.txt\n",
-           filtrer_personnel("personnel.txt", "Pilote", "", 1, "recherche.txt"));
+        case 4:
+            printf("ID du membre a rechercher : ");
+            scanf(" %19s", id);
+            if (chercher_personnel(fichier, id, &trouve))
+            {
+                printf("Trouve : %s %s, %s, base %s, experience %d an(s)\n",
+                       trouve.entry_pers_prenom, trouve.entry_pers_nom, trouve.combo_fonction,
+                       trouve.combo_base, duree_experience_personnel(trouve.date_embauche, aujourdhui));
+            }
+            else
+                printf("Membre introuvable.\n");
+            break;
 
-    printf("Experience de P001 : %d ans\n", duree_experience_personnel(p1.date_embauche, aujourdhui));
+        case 5:
+            printf("Fonction (ou - pour toutes) : ");
+            scanf(" %19s", fonction);
+            if (strcmp(fonction, "-") == 0) strcpy(fonction, "");
+            printf("Base (ou - pour toutes) : ");
+            scanf(" %39[^\n]", base);
+            if (strcmp(base, "-") == 0) strcpy(base, "");
+            printf("Disponibilite (1 = disponibles, 0 = indisponibles, -1 = tous) : ");
+            scanf("%d", &dispo);
+            n = filtrer_personnel(fichier, fonction, base, dispo, "recherche.txt");
+            printf("%d membre(s) trouve(s), resultat dans recherche.txt\n", n);
+            break;
 
-    strcpy(a1.id_personnel, "P001"); strcpy(a1.numero_vol, "TU712");
-    a1.date_vol.spin_pers_jour = 2; a1.date_vol.spin_pers_mois = 11; a1.date_vol.spin_pers_annee = 2026;
-    a1.duree = 2.5; a1.statut = 1;
-    a2 = a1;
-    strcpy(a2.numero_vol, "TU214");
-    a2.date_vol.spin_pers_jour = 20; a2.duree = 3; a2.statut = 0;
-    printf("Affectation P001 -> TU712 : %d\n", ajouter_affectation_personnel("affectations.txt", a1));
-    printf("Affectation P001 -> TU214 : %d\n", ajouter_affectation_personnel("affectations.txt", a2));
-    printf("Confirmation TU214 : %d\n", modifier_statut_affectation_personnel("affectations.txt", "P001", "TU214", 1));
-    printf("Planning de P001 : %d vol(s) -> planning.txt\n",
-           planning_personnel("affectations.txt", "P001", "planning.txt"));
-    temps_de_vol_personnel("affectations.txt", "P001", aujourdhui, &temps, &restant);
-    printf("Temps de vol : %.1f h, restant : %.1f h\n", temps, restant);
+        case 6:
+            printf("ID du membre : ");
+            scanf(" %19s", a.id_personnel);
+            if (!chercher_personnel(fichier, a.id_personnel, &trouve))
+            {
+                printf("Membre introuvable.\n");
+                break;
+            }
+            printf("Numero du vol : ");
+            scanf(" %19s", a.numero_vol);
+            printf("Date du vol (jj mm aaaa) : ");
+            scanf("%d %d %d", &a.date_vol.spin_pers_jour, &a.date_vol.spin_pers_mois, &a.date_vol.spin_pers_annee);
+            printf("Duree du vol (heures) : ");
+            scanf("%f", &a.duree);
+            a.statut = 0;
+            if (ajouter_affectation_personnel(fichier_aff, a)) printf("Affectation enregistree (non confirmee).\n");
+            else printf("Ce membre est deja affecte a ce vol.\n");
+            break;
 
-    statistiques_personnel("personnel.txt", &total, &pil, &copil, &cab, &dispo);
-    printf("Total %d, pilotes %d, copilotes %d, cabine %d, disponibles %d\n", total, pil, copil, cab, dispo);
+        case 7:
+            printf("ID du membre : ");
+            scanf(" %19s", id);
+            printf("Numero du vol : ");
+            scanf(" %19s", a.numero_vol);
+            printf("Nouveau statut (0 non confirme, 1 confirme, 2 retarde, 3 annule) : ");
+            scanf("%d", &statut);
+            if (modifier_statut_affectation_personnel(fichier_aff, id, a.numero_vol, statut))
+                printf("Statut modifie.\n");
+            else
+                printf("Affectation introuvable.\n");
+            break;
 
-    printf("Suppression P003 : %d\n", supprimer_personnel("personnel.txt", "P003"));
+        case 8:
+            printf("ID du membre : ");
+            scanf(" %19s", id);
+            n = planning_personnel(fichier_aff, id, "planning.txt");
+            temps_de_vol_personnel(fichier_aff, id, aujourdhui, &temps, &restant);
+            printf("%d vol(s) dans planning.txt\n", n);
+            printf("Temps de vol : %.1f h, temps de vol restant : %.1f h\n", temps, restant);
+            break;
+
+        case 9:
+            statistiques_personnel(fichier, &total, &pil, &copil, &cab, &nb_dispo);
+            printf("Total : %d | Pilotes : %d | Copilotes : %d | Cabine : %d | Disponibles : %d\n",
+                   total, pil, copil, cab, nb_dispo);
+            break;
+
+        case 0:
+            printf("Au revoir.\n");
+            break;
+
+        default:
+            printf("Choix invalide.\n");
+        }
+    } while (choix != 0);
+
     return 0;
 }
