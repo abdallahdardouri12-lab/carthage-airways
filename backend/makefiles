@@ -1,0 +1,8 @@
+prog: passager.o main_passager.o
+	gcc passager.o main_passager.o -o prog
+
+main_passager.o: main_passager.c passager.h
+	gcc -c main_passager.c
+
+passager.o: passager.c passager.h
+	gcc -c passager.c
