@@ -3,25 +3,25 @@
 
 typedef struct
 {
-    int spin_pers_jour;
-    int spin_pers_mois;
-    int spin_pers_annee;
+    int pers_jour;
+    int pers_mois;
+    int pers_annee;
 } DatePersonnel;
 
 typedef struct
 {
-    char entry_id[20];
-    char entry_login[30];
-    char entry_pers_nom[30];
-    char entry_pers_prenom[30];
-    char entry_pers_cin[9];
+    char id[20];
+    char login[30];
+    char nom[30];
+    char prenom[30];
+    char cin[9];
     DatePersonnel date_naissance;
-    char combo_fonction[20];
-    char label_pers_grade[40];
-    char combo_base[40];
+    char fonction[20];
+    char grade[40];
+    char base[40];
     DatePersonnel date_embauche;
-    char entry_pers_telephone[9];
-    char entry_pers_mail[50];
+    char telephone[9];
+    char mail[50];
     int check_disponible;
     float heures_vol;
 } Personnel;

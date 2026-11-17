@@ -6,21 +6,21 @@
 static int lire_personnel(FILE *f, Personnel *p)
 {
     return fscanf(f, " %19[^;];%29[^;];%29[^;];%29[^;];%8[^;];%d;%d;%d;%19[^;];%39[^;];%39[^;];%d;%d;%d;%8[^;];%49[^;];%d;%f",
-        p->entry_id, p->entry_login, p->entry_pers_nom, p->entry_pers_prenom, p->entry_pers_cin,
-        &p->date_naissance.spin_pers_jour, &p->date_naissance.spin_pers_mois, &p->date_naissance.spin_pers_annee,
-        p->combo_fonction, p->label_pers_grade, p->combo_base,
-        &p->date_embauche.spin_pers_jour, &p->date_embauche.spin_pers_mois, &p->date_embauche.spin_pers_annee,
-        p->entry_pers_telephone, p->entry_pers_mail, &p->check_disponible, &p->heures_vol) == 18;
+        p->id, p->login, p->nom, p->prenom, p->cin,
+        &p->date_naissance.pers_jour, &p->date_naissance.pers_mois, &p->date_naissance.pers_annee,
+        p->fonction, p->grade, p->base,
+        &p->date_embauche.pers_jour, &p->date_embauche.pers_mois, &p->date_embauche.pers_annee,
+        p->telephone, p->mail, &p->check_disponible, &p->heures_vol) == 18;
 }
 
 static void ecrire_personnel(FILE *f, Personnel p)
 {
     fprintf(f, "%s;%s;%s;%s;%s;%d;%d;%d;%s;%s;%s;%d;%d;%d;%s;%s;%d;%.1f\n",
-        p.entry_id, p.entry_login, p.entry_pers_nom, p.entry_pers_prenom, p.entry_pers_cin,
-        p.date_naissance.spin_pers_jour, p.date_naissance.spin_pers_mois, p.date_naissance.spin_pers_annee,
-        p.combo_fonction, p.label_pers_grade, p.combo_base,
-        p.date_embauche.spin_pers_jour, p.date_embauche.spin_pers_mois, p.date_embauche.spin_pers_annee,
-        p.entry_pers_telephone, p.entry_pers_mail, p.check_disponible, p.heures_vol);
+        p.id, p.login, p.nom, p.prenom, p.cin,
+        p.date_naissance.pers_jour, p.date_naissance.pers_mois, p.date_naissance.pers_annee,
+        p.fonction, p.grade, p.base,
+        p.date_embauche.pers_jour, p.date_embauche.pers_mois, p.date_embauche.pers_annee,
+        p.telephone, p.mail, p.check_disponible, p.heures_vol);
 }
 
 int chercher_personnel(char *fichier, char *id, Personnel *resultat)
@@ -30,7 +30,7 @@ int chercher_personnel(char *fichier, char *id, Personnel *resultat)
     if (f == NULL) return 0;
     while (lire_personnel(f, &p))
     {
-        if (strcmp(p.entry_id, id) == 0)
+        if (strcmp(p.id, id) == 0)
         {
             *resultat = p;
             fclose(f);
@@ -48,7 +48,7 @@ int chercher_personnel_par_login(char *fichier, char *login, Personnel *resultat
     if (f == NULL) return 0;
     while (lire_personnel(f, &p))
     {
-        if (strcmp(p.entry_login, login) == 0)
+        if (strcmp(p.login, login) == 0)
         {
             *resultat = p;
             fclose(f);
@@ -74,7 +74,7 @@ int login_personnel_existe(char *fichier, char *login)
 int ajouter_personnel(char *fichier, Personnel p)
 {
     FILE *f;
-    if (id_personnel_existe(fichier, p.entry_id) || login_personnel_existe(fichier, p.entry_login))
+    if (id_personnel_existe(fichier, p.id) || login_personnel_existe(fichier, p.login))
         return 0;
     f = fopen(fichier, "a");
     if (f == NULL) return 0;
@@ -89,9 +89,9 @@ int modifier_personnel(char *fichier, char *id, Personnel nouveau)
     int trouve = 0;
     FILE *f, *aux;
 
-    strcpy(nouveau.entry_id, id);
-    if (chercher_personnel_par_login(fichier, nouveau.entry_login, &autre)
-        && strcmp(autre.entry_id, id) != 0)
+    strcpy(nouveau.id, id);
+    if (chercher_personnel_par_login(fichier, nouveau.login, &autre)
+        && strcmp(autre.id, id) != 0)
         return 0;
 
     f = fopen(fichier, "r");
@@ -104,7 +104,7 @@ int modifier_personnel(char *fichier, char *id, Personnel nouveau)
     }
     while (lire_personnel(f, &p))
     {
-        if (strcmp(p.entry_id, id) == 0)
+        if (strcmp(p.id, id) == 0)
         {
             ecrire_personnel(aux, nouveau);
             trouve = 1;
@@ -133,7 +133,7 @@ int supprimer_personnel(char *fichier, char *id)
     }
     while (lire_personnel(f, &p))
     {
-        if (strcmp(p.entry_id, id) == 0)
+        if (strcmp(p.id, id) == 0)
             trouve = 1;
         else
             ecrire_personnel(aux, p);
@@ -160,8 +160,8 @@ int filtrer_personnel(char *fichier, char *fonction, char *base,
     }
     while (lire_personnel(f, &p))
     {
-        if (strcmp(fonction, "") != 0 && strcmp(p.combo_fonction, fonction) != 0) continue;
-        if (strcmp(base, "") != 0 && strcmp(p.combo_base, base) != 0) continue;
+        if (strcmp(fonction, "") != 0 && strcmp(p.fonction, fonction) != 0) continue;
+        if (strcmp(base, "") != 0 && strcmp(p.base, base) != 0) continue;
         if (disponible != -1 && p.check_disponible != disponible) continue;
         ecrire_personnel(res, p);
         n++;
@@ -192,32 +192,32 @@ static int email_valide(char *mail)
 static int date_valide(DatePersonnel d)
 {
     int jours[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (d.spin_pers_annee < 1900 || d.spin_pers_mois < 1 || d.spin_pers_mois > 12) return 0;
-    if ((d.spin_pers_annee % 4 == 0 && d.spin_pers_annee % 100 != 0) || d.spin_pers_annee % 400 == 0)
+    if (d.pers_annee < 1900 || d.pers_mois < 1 || d.pers_mois > 12) return 0;
+    if ((d.pers_annee % 4 == 0 && d.pers_annee % 100 != 0) || d.pers_annee % 400 == 0)
         jours[1] = 29;
-    return d.spin_pers_jour >= 1 && d.spin_pers_jour <= jours[d.spin_pers_mois - 1];
+    return d.pers_jour >= 1 && d.pers_jour <= jours[d.pers_mois - 1];
 }
 
 int controle_saisie_personnel(char *fichier, Personnel p)
 {
-    if (strlen(p.entry_id) == 0 || strlen(p.entry_login) == 0 || strlen(p.entry_pers_nom) == 0
-        || strlen(p.entry_pers_prenom) == 0 || strlen(p.combo_fonction) == 0 || strlen(p.combo_base) == 0)
+    if (strlen(p.id) == 0 || strlen(p.login) == 0 || strlen(p.nom) == 0
+        || strlen(p.prenom) == 0 || strlen(p.fonction) == 0 || strlen(p.base) == 0)
         return 1;
-    if (!que_des_chiffres(p.entry_pers_telephone, 8)) return 2;
-    if (!email_valide(p.entry_pers_mail)) return 3;
-    if (!que_des_chiffres(p.entry_pers_cin, 8)) return 4;
+    if (!que_des_chiffres(p.telephone, 8)) return 2;
+    if (!email_valide(p.mail)) return 3;
+    if (!que_des_chiffres(p.cin, 8)) return 4;
     if (!date_valide(p.date_naissance) || !date_valide(p.date_embauche)) return 5;
-    if (id_personnel_existe(fichier, p.entry_id)) return 6;
-    if (login_personnel_existe(fichier, p.entry_login)) return 7;
+    if (id_personnel_existe(fichier, p.id)) return 6;
+    if (login_personnel_existe(fichier, p.login)) return 7;
     return 0;
 }
 
 int duree_experience_personnel(DatePersonnel embauche, DatePersonnel aujourdhui)
 {
-    int ans = aujourdhui.spin_pers_annee - embauche.spin_pers_annee;
-    if (aujourdhui.spin_pers_mois < embauche.spin_pers_mois
-        || (aujourdhui.spin_pers_mois == embauche.spin_pers_mois
-            && aujourdhui.spin_pers_jour < embauche.spin_pers_jour))
+    int ans = aujourdhui.pers_annee - embauche.pers_annee;
+    if (aujourdhui.pers_mois < embauche.pers_mois
+        || (aujourdhui.pers_mois == embauche.pers_mois
+            && aujourdhui.pers_jour < embauche.pers_jour))
         ans--;
     if (ans < 0) ans = 0;
     return ans;
@@ -225,22 +225,22 @@ int duree_experience_personnel(DatePersonnel embauche, DatePersonnel aujourdhui)
 
 static int comparer_dates(DatePersonnel a, DatePersonnel b)
 {
-    long x = a.spin_pers_annee * 10000L + a.spin_pers_mois * 100 + a.spin_pers_jour;
-    long y = b.spin_pers_annee * 10000L + b.spin_pers_mois * 100 + b.spin_pers_jour;
+    long x = a.pers_annee * 10000L + a.pers_mois * 100 + a.pers_jour;
+    long y = b.pers_annee * 10000L + b.pers_mois * 100 + b.pers_jour;
     return (x < y) ? -1 : (x > y);
 }
 
 static int lire_affectation_personnel(FILE *f, AffectationPersonnel *a)
 {
     return fscanf(f, " %19[^;];%19[^;];%d;%d;%d;%f;%d", a->id_personnel, a->numero_vol,
-                  &a->date_vol.spin_pers_jour, &a->date_vol.spin_pers_mois,
-                  &a->date_vol.spin_pers_annee, &a->duree, &a->statut) == 7;
+                  &a->date_vol.pers_jour, &a->date_vol.pers_mois,
+                  &a->date_vol.pers_annee, &a->duree, &a->statut) == 7;
 }
 
 static void ecrire_affectation_personnel(FILE *f, AffectationPersonnel a)
 {
     fprintf(f, "%s;%s;%d;%d;%d;%.2f;%d\n", a.id_personnel, a.numero_vol,
-            a.date_vol.spin_pers_jour, a.date_vol.spin_pers_mois, a.date_vol.spin_pers_annee,
+            a.date_vol.pers_jour, a.date_vol.pers_mois, a.date_vol.pers_annee,
             a.duree, a.statut);
 }
 
@@ -349,8 +349,8 @@ void statistiques_personnel(char *fichier, int *total, int *pilotes,
     while (lire_personnel(f, &p))
     {
         (*total)++;
-        if (strcmp(p.combo_fonction, "Pilote") == 0) (*pilotes)++;
-        else if (strcmp(p.combo_fonction, "Copilote") == 0) (*copilotes)++;
+        if (strcmp(p.fonction, "Pilote") == 0) (*pilotes)++;
+        else if (strcmp(p.fonction, "Copilote") == 0) (*copilotes)++;
         else (*cabine)++;
         if (p.check_disponible == 1) (*disponibles)++;
     }
