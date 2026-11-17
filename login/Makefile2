@@ -1,0 +1,19 @@
+# Compilation du module utilisateur (connexion / inscription)
+# make -f Makefile2        : compiler
+# make -f Makefile2 test   : compiler, lancer le test, puis afficher utilisateurs.txt
+# make -f Makefile2 clean  : effacer le programme de test
+
+CC = gcc
+CFLAGS = -Wall
+
+test_utilisateur: utilisateur.c main_test_utilisateur.c utilisateur.h
+	$(CC) $(CFLAGS) utilisateur.c main_test_utilisateur.c -o test_utilisateur
+
+test: test_utilisateur
+	./test_utilisateur
+	@echo
+	@echo "===== utilisateurs.txt ====="
+	@cat utilisateurs.txt 2>/dev/null || echo "(vide)"
+
+clean:
+	rm -f test_utilisateur aux_utilisateurs.txt
