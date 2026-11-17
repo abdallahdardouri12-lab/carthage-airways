@@ -1,29 +1,26 @@
 # ============================================================
 #  Carthage Airways - organisation des fenetres par role
 #  [nom_de_la_fenetre | Titre - Sous-titre]
-#  Nom de l'onglet = fenetre d'origine (voir integration.py)
+#  Nom de l'onglet = fenetre d'origine
 #    @tableau = tableau de bord automatique
-#    @vide    = page "Module en cours d'integration"
-#  Une meme fenetre peut servir dans deux espaces.
+#  Garder seulement certains sous-onglets d'une fenetre :
+#    fenetre [avec: mot]   -> garde les sous-onglets dont le titre contient "mot"
+#    fenetre [sans: mot]   -> enleve les sous-onglets dont le titre contient "mot"
 #  Plusieurs fenetres dans un onglet : Titre: fenetre + Titre: fenetre
-#  Les fenetres non citees restent separees (connexion,
-#  formulaires, confirmations...).
-#  !garder = ces fenetres restent AUSSI des fenetres separees
+#  Les fenetres non citees restent des fenetres separees
+#  (connexion, espace personnel navigant, ajouter, modifier,
+#   supprimer, annulation, carte d'embarquement...).
 # ============================================================
-
-!garder win_pers_espace
 
 [window_admin | Carthage Airways - Espace administrateur]
 Tableau de bord = @tableau
-Vols = windowGestionVols
-Passagers = WWwindowPassagers
-Réservations = window_gestion_reservations
-Personnel navigant = Gestion du personnel: win_admin_personnel + Espace personnel navigant: win_pers_espace
+Vols = windowGestionVols [sans: passager]
+Passagers = WWwindowAdminPassagers
+Réservations = window_reservation_admin
+Personnel navigant = win_admin_personnel
 Avions = av_win1
-Aéroports = @vide
 
 [window_espace_passager | Carthage Airways - Espace passager]
-Mes réservations = window_passager
-Recherche de vols = @vide
-Mon profil et fidélité = @vide
-Aéroports = @vide
+Trouver un vol = windowGestionVols [avec: passager]
+Mes réservations = window_reservation_passager
+Mon profil et fidélité = WWwindowEspacePassager

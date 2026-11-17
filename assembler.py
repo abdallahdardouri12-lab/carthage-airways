@@ -129,16 +129,77 @@ def page_vide(wid, nom):
         (page_titre(wid, nom, "Module en cours d'intégration"), "False", "False"),
     ], "15", "15")
 
+def normal(t):
+    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode()
+    return t.lower()
+
 def parties(valeur):
+    """ "Titre: fenetre [sans: mot1, mot2]" -> liste de (titre, fenetre, mode, mots) """
     res = []
     for morceau in valeur.split("+"):
         morceau = morceau.strip()
-        if ":" in morceau:
-            t, f = [x.strip() for x in morceau.split(":", 1)]
-        else:
-            t, f = morceau, morceau
-        res.append((t, f))
+        m = re.match(r"^(?:([^:\[]+):)?\s*([A-Za-z0-9_@]+)\s*(?:\[\s*(avec|sans)\s*:\s*([^\]]*)\])?\s*$", morceau)
+        if not m:
+            sys.exit("ERREUR : ecriture incomprise dans espaces.txt : " + morceau)
+        f = m.group(2)
+        t = (m.group(1) or f).strip()
+        mots = [normal(x.strip()) for x in (m.group(4) or "").split(",") if x.strip()]
+        res.append((t, f, m.group(3), mots))
     return res
+
+def texte_onglet(w):
+    if w is None:
+        return ""
+    for x in w.iter("widget"):
+        if x.get("class") == "GtkLabel":
+            p = x.find("property[@name='label']")
+            if p is not None and p.text:
+                return re.sub(r"<[^>]+>", "", p.text).strip()
+    return ""
+
+def filtrer_onglets(contenu, mode, mots, fen):
+    """Garde (avec) ou enleve (sans) les sous-onglets dont le titre contient un des mots."""
+    parents = {c: p for p in contenu.iter() for c in p}
+    nb = None
+    for w in contenu.iter("widget"):
+        if w.get("class") == "GtkNotebook":
+            nb = w
+            break
+    if nb is None:
+        sys.exit("ERREUR : la fenetre '%s' n'a pas de sous-onglets, on ne peut pas faire [%s: ...]" % (fen, mode))
+    paires = []
+    for c in nb.findall("child"):
+        t = c.find("packing/property[@name='type']")
+        if t is not None and t.text == "tab":
+            if paires:
+                paires[-1][1] = c
+        else:
+            paires.append([c, None])
+    gardes, titres = [], []
+    for page, tab in paires:
+        titre = texte_onglet(tab.find("widget") if tab is not None else None)
+        trouve = any(m in normal(titre) for m in mots)
+        if (mode == "avec") == trouve:
+            gardes.append(page)
+            titres.append(titre)
+        else:
+            nb.remove(page)
+            if tab is not None:
+                nb.remove(tab)
+    if not gardes:
+        tous = [texte_onglet(t.find("widget")) if t is not None else "?" for p, t in paires]
+        sys.exit("ERREUR : aucun sous-onglet de '%s' ne correspond a [%s: %s]. Sous-onglets : %s"
+                 % (fen, mode, ", ".join(mots), ", ".join(tous)))
+    if len(gardes) == 1:
+        seul = gardes[0].find("widget")
+        if nb is contenu:
+            contenu = seul
+        else:
+            pc = parents[nb]
+            i = list(pc).index(nb)
+            pc.remove(nb)
+            pc.insert(i, seul)
+    return contenu, titres
 
 # ---------- lecture de espaces.txt ----------
 if not os.path.exists(config):
@@ -175,7 +236,7 @@ for esp in espaces:
     for onglet, fen in esp["onglets"]:
         if fen.startswith("@"):
             continue
-        for titre_sous, f in parties(fen):
+        for titre_sous, f, mode, mots in parties(fen):
             if f not in fenetres:
                 sys.exit("ERREUR : la fenetre '%s' (onglet %s) n'existe pas dans carthage.glade" % (f, onglet))
 
@@ -221,10 +282,13 @@ for pos, esp in enumerate(espaces):
         else:
             morceaux = parties(fen)
             pages = []
-            for titre_sous, f in morceaux:
+            for titre_sous, f, mode, mots in morceaux:
                 c = copy.deepcopy(fenetres[f].find("child/widget"))
                 if c is None:
                     sys.exit("ERREUR : la fenetre '%s' est vide" % f)
+                if mode:
+                    c, gardes = filtrer_onglets(c, mode, mots, f)
+                    print("  %s > %s : sous-onglets gardes = %s" % (wid, onglet, ", ".join(gardes)))
                 utilisees.add(f)
                 pages.append((titre_sous, c))
             if len(pages) == 1:
