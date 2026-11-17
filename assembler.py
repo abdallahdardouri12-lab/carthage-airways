@@ -205,6 +205,8 @@ def filtrer_onglets(contenu, mode, mots, fen):
 if not os.path.exists(config):
     sys.exit("ERREUR : espaces.txt introuvable a cote de assembler.py")
 espaces = []
+ajouts = []
+retirer = set()
 garder = set()
 for ligne in open(config, encoding="utf-8"):
     ligne = ligne.strip()
@@ -212,6 +214,14 @@ for ligne in open(config, encoding="utf-8"):
         continue
     if ligne.startswith("!garder"):
         garder.update(x.strip() for x in ligne[len("!garder"):].split(",") if x.strip())
+        continue
+    if ligne.startswith("!retirer"):
+        retirer.update(x.strip() for x in ligne[len("!retirer"):].split(",") if x.strip())
+        continue
+    m = re.match(r"^\[\+\s*(\w+)\s*/\s*(\w+)\s*\]$", ligne)
+    if m:
+        ajouts.append({"fen": m.group(1), "nb": m.group(2), "onglets": []})
+        espaces.append(ajouts[-1])
         continue
     m = re.match(r"^\[(\w+)\s*\|\s*(.+)\]$", ligne)
     if m:
@@ -222,6 +232,8 @@ for ligne in open(config, encoding="utf-8"):
     else:
         sys.exit("ERREUR : ligne incomprise dans espaces.txt : " + ligne)
 
+espaces = [e for e in espaces if "fen" not in e]
+
 try:
     arbre = ET.parse(projet)
 except Exception as e:
@@ -229,6 +241,14 @@ except Exception as e:
 glade = arbre.getroot()
 fenetres = {w.get("id"): w for w in glade.findall("widget")}
 utilisees = set()
+
+for aj in ajouts:
+    if aj["fen"] not in fenetres:
+        sys.exit("ERREUR : la fenetre '%s' n'existe pas (ligne [+%s/%s])" % (aj["fen"], aj["fen"], aj["nb"]))
+    for onglet, fen in aj["onglets"]:
+        for titre_sous, f, mode, mots in parties(fen):
+            if f not in fenetres:
+                sys.exit("ERREUR : la fenetre '%s' (onglet %s) n'existe pas dans carthage.glade" % (f, onglet))
 
 for esp in espaces:
     if esp["id"] in fenetres:
@@ -334,8 +354,39 @@ for pos, esp in enumerate(espaces):
         vus.add(w.get("id"))
     print("  %s : %s" % (wid, ", ".join(o for o, f in esp["onglets"])))
 
-for fen in utilisees - garder:
-    glade.remove(fenetres[fen])
+for aj in ajouts:
+    cible = fenetres[aj["fen"]]
+    nbk = None
+    for w in cible.iter("widget"):
+        if w.get("id") == aj["nb"]:
+            nbk = w
+    if nbk is None or nbk.get("class") != "GtkNotebook":
+        sys.exit("ERREUR : '%s' n'est pas un onglet de la fenetre '%s'" % (aj["nb"], aj["fen"]))
+    for k, (onglet, fen) in enumerate(aj["onglets"], 1):
+        titre_sous, f, mode, mots = parties(fen)[0]
+        c = copy.deepcopy(fenetres[f].find("child/widget"))
+        if mode:
+            c, gardes = filtrer_onglets(c, mode, mots, f)
+        utilisees.add(f)
+        enfant(nbk, c, [("tab_expand", "False"), ("tab_fill", "True")])
+        enfant(nbk, label("%s_ajout%d" % (aj["nb"], k), onglet, False, "0.5"), [("type", "tab")])
+    vus = set()
+    for w in cible.iter("widget"):
+        i = w.get("id")
+        if i in vus:
+            n = 2
+            while "%s_%d" % (i, n) in vus:
+                n += 1
+            w.set("id", "%s_%d" % (i, n))
+            print("  attention : dans %s, un 2e '%s' a ete renomme en '%s'" % (aj["fen"], i, w.get("id")))
+        vus.add(w.get("id"))
+    print("  %s : onglet(s) ajoute(s) -> %s" % (aj["fen"], ", ".join(o for o, f in aj["onglets"])))
+
+for fen in (utilisees - garder) | retirer:
+    if fen in fenetres and fenetres[fen] in list(glade):
+        glade.remove(fenetres[fen])
+        if fen in retirer:
+            print("  fenetre retiree : %s" % fen)
 
 with open(projet, "w", encoding="utf-8") as out:
     out.write('<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->\n')

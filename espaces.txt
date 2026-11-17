@@ -7,9 +7,9 @@
 #    fenetre [avec: mot]   -> garde les sous-onglets dont le titre contient "mot"
 #    fenetre [sans: mot]   -> enleve les sous-onglets dont le titre contient "mot"
 #  Plusieurs fenetres dans un onglet : Titre: fenetre + Titre: fenetre
-#  Les fenetres non citees restent des fenetres separees
-#  (connexion, espace personnel navigant, ajouter, modifier,
-#   supprimer, annulation, carte d'embarquement...).
+#  Ajouter un onglet a une fenetre existante : [+fenetre/onglets]
+#  Retirer une fenetre du projet final : !retirer fenetre
+#  Les fenetres non citees restent des fenetres separees.
 # ============================================================
 
 [window_admin | Carthage Airways - Espace administrateur]
@@ -24,3 +24,8 @@ Avions = av_win1
 Trouver un vol = windowGestionVols [avec: passager]
 Mes réservations = window_reservation_passager
 Mon profil et fidélité = WWwindowEspacePassager
+
+[+win_pers_espace/notebook_pers]
+Avions = av_win_consultation
+
+!retirer av_win2
